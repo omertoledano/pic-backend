@@ -1,4 +1,3 @@
-import sys
 from flask_pymongo.wrappers import MongoClient
 from settings import MONGO_DBNAME, MONGO_HOST, MONGO_PORT, MONGO_COLLECTION_NAME
 

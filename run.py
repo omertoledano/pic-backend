@@ -1,8 +1,11 @@
 import json
+from random import randint
+
 from flask import jsonify, request, Flask
 from flask_cors import CORS
 from flask_mongokit import MongoKit
 from models.picture import Picture
+
 
 app = Flask(__name__)
 app.config.from_object('settings')
@@ -12,18 +15,13 @@ db = MongoKit(app)
 db.register([Picture])
 
 
-@app.route("/test")
-def test():
-    try:
-        print db.Picture.find()
-    except Exception as e:
-        print e
-
-
-
 @app.route("/api/v1/images/random")
 def get_random_image():
-    return jsonify({'url': 'http://www.imgion.com/images/01/beautiful-village-home.jpg', 'id': 1})
+    res = list(db.Picture.find())
+    rand_int = randint(0, len(res))
+    d = {'id': res[rand_int].id, 'url': res[rand_int].url}
+    return jsonify(d)
+
 
 
 @app.route("/api/v1/image/<int:image_id>/like", methods=['POST'])

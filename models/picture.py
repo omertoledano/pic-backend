@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_mongokit import Document, MongoKit
+from flask_mongokit import Document
 
 app = Flask(__name__)
 
