@@ -1,7 +1,7 @@
 import json
 from random import randint
 
-from flask import jsonify, request, Flask
+from flask import jsonify, request, Flask, abort
 from flask_cors import CORS
 from flask_mongokit import MongoKit
 from models.picture import Picture
@@ -23,12 +23,23 @@ def get_random_image():
     return jsonify(d)
 
 
-
 @app.route("/api/v1/image/<int:image_id>/like", methods=['POST'])
 def save_op(image_id):
-    print image_id, json.loads(request.data)['op']
+    try:
+        print image_id, json.loads(request.data)['op']
+        update_dict = build_update_dict(json.loads(request.data)['op'])
+        db[Picture.__collection__].update({'id': image_id}, update_dict, False)
+    except Exception as e:
+        print e
     return jsonify({})
 
+
+def build_update_dict(op):
+    if op == 'like':
+        return {'$inc': {'like_cnt': 1}}
+    elif op == 'dont_like':
+        return {'$inc': {'dont_like_cnt': 1}}
+    abort(404)
 
 if __name__ == '__main__':
     app.run()
