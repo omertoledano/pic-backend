@@ -1,11 +1,23 @@
 import json
-from eve import Eve
-from flask import jsonify, request
+from flask import jsonify, request, Flask
 from flask_cors import CORS
+from flask_mongokit import MongoKit
+from models.picture import Picture
 
-app = Eve()
+app = Flask(__name__)
+app.config.from_object('settings')
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resources={r'/api/v1/*': {"origins": "*"}})
+db = MongoKit(app)
+db.register([Picture])
+
+
+@app.route("/test")
+def test():
+    try:
+        print db.Picture.find()
+    except Exception as e:
+        print e
 
 
 
