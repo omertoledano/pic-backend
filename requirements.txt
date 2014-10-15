@@ -2,6 +2,7 @@ Cerberus==0.7.2
 Eve==0.4
 Events==0.2.1
 Flask==0.10.1
+Flask-Cors==1.9.0
 Flask-PyMongo==0.3.0
 Jinja2==2.7.3
 MarkupSafe==0.23
@@ -10,4 +11,5 @@ argparse==1.2.1
 itsdangerous==0.24
 pymongo==2.7.1
 simplejson==3.5.2
+six==1.8.0
 wsgiref==0.1.2
