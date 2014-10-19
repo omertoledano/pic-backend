@@ -11,6 +11,7 @@ argparse==1.2.1
 itsdangerous==0.24
 mongokit==0.9.1.1
 pymongo==2.7.1
+requests==2.4.3
 simplejson==3.5.2
 six==1.8.0
 wsgiref==0.1.2
