@@ -7,12 +7,11 @@ class User(Document):
     __collection__ = 'user'
 
     structure = {
-        'id': long,
-        'username': basestring,
+        'fb_user_id': basestring,
+        'user_token': basestring,
         'like_pics': [long],
-        'dont_like_cnt': [long],
-        'token': basestring
+        'dont_like_pics': [long]
     }
-    required_fields = ['id', 'username']
-    default_values = {'like_cnt': [], 'dont_like_cnt': []}
+    required_fields = ['fb_user_id', 'user_token']
+    default_values = {'like_pics': [], 'dont_like_pics': []}
     use_dot_notation = True
