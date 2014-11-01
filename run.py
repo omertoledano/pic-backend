@@ -15,6 +15,13 @@ db = MongoKit(app)
 db.register([Picture])
 
 
+@app.route("/api/v1/fb_user_token", methods=['POST'])
+def get_user_token():
+    fb_id = request.args.get('fb_user_id')
+    print fb_id
+    return jsonify({"token": "111"})
+
+
 @app.route("/api/v1/images/random")
 def get_random_image():
     res = list(db.Picture.find())
