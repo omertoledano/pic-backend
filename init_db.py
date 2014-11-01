@@ -9,11 +9,11 @@ MONGODB_COLLECTION_NAME = 'pic'
 
 pics = [
     {'url': 'http://www.thetimes.co.uk/tto/multimedia/archive/00309/108787995_309592c.jpg',
-     'like_cnt': 0, 'dont_like_cnt': 0},
+     'like_users': [], 'dont_like_users': []},
     {'url': 'http://cdni.wired.co.uk/620x413/s_v/shutterstock_65735200.jpg',
-     'like_cnt': 0, 'dont_like_cnt': 0},
+     'like_users': [], 'dont_like_users': []},
     {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4ufFVwmoe1ltmoJstyx8OS23hf6g9HlPzYY-QVAhlx5q-CzRy',
-     'like_cnt': 0, 'dont_like_cnt': 0}
+     'like_users': [], 'dont_like_users': []}
 ]
 
 app = Flask(__name__)

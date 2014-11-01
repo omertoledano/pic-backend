@@ -10,9 +10,9 @@ class Picture(Document):
     structure = {
         'id': long,
         'url': basestring,
-        'like_cnt': int,
-        'dont_like_cnt': int
+        'like_users': [long],
+        'dont_like_users': [long]
     }
     required_fields = ['id', 'url']
-    default_values = {'like_cnt': 0, 'dont_like_cnt': 0}
+    default_values = {'like_users': [], 'dont_like_users': []}
     use_dot_notation = True

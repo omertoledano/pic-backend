@@ -26,19 +26,22 @@ def get_random_image():
 @app.route("/api/v1/image/<int:image_id>/like", methods=['POST'])
 def save_op(image_id):
     try:
-        print image_id, json.loads(request.data)['op']
-        update_dict = build_update_dict(json.loads(request.data)['op'])
+        request_data = json.loads(request.data)
+        print image_id, request_data['op']
+        update_dict = build_update_dict(json.loads(request.data)['op'], request_data['user_token'])
         db[Picture.__collection__].update({'id': image_id}, update_dict, False)
     except Exception as e:
         print e
     return jsonify({})
 
 
-def build_update_dict(op):
+def build_update_dict(op, user_token):
+    if user_token is None:
+        return
     if op == 'like':
-        return {'$inc': {'like_cnt': 1}}
+        return {'$addToSet': {'like_users': user_token}}
     elif op == 'dont_like':
-        return {'$inc': {'dont_like_cnt': 1}}
+        return {'$addToSet': {'dont_like_users': user_token}}
     abort(404)
 
 if __name__ == '__main__':

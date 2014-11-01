@@ -3,13 +3,13 @@ import requests
 class CustomSearch:
     URL_TEMPLATE = "https://www.googleapis.com/customsearch/v1?key=%s&cx=%s"
 
-    def __init__(self, apiKey, searchEngineId):
-        self.apiKey = apiKey
-        self.searchEngineId = searchEngineId
+    def __init__(self, api_key, search_engine_id):
+        self.api_key = api_key
+        self.search_engine_id = search_engine_id
 
     def get(self, params):
         params_string = ''.join(['&'+key+'='+value for key, value in params.iteritems()])
-        final_url = self.URL_TEMPLATE % (self.apiKey, self.searchEngineId) + params_string
+        final_url = self.URL_TEMPLATE % (self.api_key, self.search_engine_id) + params_string
         return requests.get(final_url).json()
 
     @classmethod
